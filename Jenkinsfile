@@ -1,24 +1,17 @@
 pipeline {
-  agent any
-  stages {
-    stage('test') {
-      steps {
-        bat(script: 'echo "helloooo..."', returnStatus: true)
-        echo '"Test Stage"'
-      }
-    }
+    agent any
 
-    stage('Build') {
-      steps {
-        echo 'Build Stage'
-      }
+    stages {
+        stage('SCM') {
+            steps {
+                echo 'Hello World'
+                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/nehapatil-coditas/demo-jenkins.git']])
+             }
+        }
+        stage('S3 Upload') {
+              steps {
+                  s3Upload acl: 'PublicRead', bucket: 'front-end-101', cacheControl: '', excludePathPattern: '', file: '**/*', includePathPattern: '', metadatas: [''], redirectLocation: '', sseAlgorithm: '', tags: '', text: '', workingDir: ''
+              }
+        }
     }
-
-    stage('Deploy') {
-      steps {
-        echo 'Deployed on Production...'
-      }
-    }
-
-  }
 }

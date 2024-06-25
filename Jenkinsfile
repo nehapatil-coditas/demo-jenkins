@@ -14,7 +14,7 @@ pipeline {
                 script {
                     withCredentials([usernamePassword(credentialsId: 'AWS-Cred', usernameVariable: 'AWS_ACCESS_KEY_ID', passwordVariable: 'AWS_SECRET_ACCESS_KEY')]) {
                         script {
-                            aws s3 cp . s3://front-end-101 --recursive --acl public-read
+                            sh 'aws s3 cp . s3://front-end-101 --recursive --acl public-read'
 
                         }
                     }

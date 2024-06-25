@@ -14,6 +14,7 @@ pipeline {
                     script {
                         sh 'aws s3 sync . s3://front-end-101 --acl public-read'
                     }
+                    }
                 }
             }
         }

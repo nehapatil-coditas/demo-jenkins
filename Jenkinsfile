@@ -6,7 +6,8 @@ pipeline {
     stages {
         stage('SCM') {
             steps {
-                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/nehapatil-coditas/demo-jenkins.git']])
+                echo "Code checkout from GitHub"
+                //checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/nehapatil-coditas/demo-jenkins.git']])
             }
         }
         stage('Deploy to S3') {

@@ -14,8 +14,7 @@ pipeline {
                 script {
                     withCredentials([usernamePassword(credentialsId: 'AWS-Cred', usernameVariable: 'AWS_ACCESS_KEY_ID', passwordVariable: 'AWS_SECRET_ACCESS_KEY')]) {
                         script {
-                            sh 'aws s3 rm s3://front-end-101 --recursive'
-                            sh 'aws s3 sync . s3://front-end-101 --acl public-read'
+                            sh 'aws s3 cp . s3://front-end-101 --acl public-read'
                         }
                     }
                 }
